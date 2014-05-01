@@ -17,15 +17,21 @@ public class AnnotationDTO {
 	 * 
 	 */
 	public AnnotationDTO() {
-		
+		setAnnotationId(0);
+		setTicketId(0);
+		setAuthorName("");
+		setText("");
 	}
 	
 	/**
 	 * 
 	 * @param annotationId
 	 */
-	public AnnotationDTO(int annotationId) {
-		
+	public AnnotationDTO(int annotationId, int ticketId, String authorName, String text) {
+		setAnnotationId(annotationId);
+		setTicketId(ticketId);
+		setAuthorName(authorName);
+		setText(text);
 	}
 	
 	/**

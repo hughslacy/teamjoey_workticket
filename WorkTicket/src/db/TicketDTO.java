@@ -3,6 +3,8 @@
  */
 package db;
 
+
+import java.sql.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -29,8 +31,15 @@ public class TicketDTO {
 	 * 
 	 * @param ticketId
 	 */
-	public TicketDTO(int ticketId) {
+	public TicketDTO(int ticketId, Date datePosted, String title, String description) {
+		// setup calendar
+		GregorianCalendar calDatePosted = new GregorianCalendar();
+		calDatePosted.setTime(datePosted);
+		
 		setTicketId(ticketId);
+		setDatePosted(calDatePosted);
+		setTitle(title);
+		setDescription(description);
 	}
 	
 	
