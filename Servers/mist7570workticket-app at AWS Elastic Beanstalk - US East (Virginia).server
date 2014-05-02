@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server accountId="2e8160d8-f422-4073-89a8-c6ac0f176fc1" applicationDescription="work ticket" applicationName="mist7570workticket" auto-publish-setting="1" cname="mist7570workticket-app-xphpzfcbk3.elasticbeanstalk.com" environmentDescription="" environmentName="mist7570workticket-app" hostname="AWS Elastic Beanstalk - US East (Virginia)" id="mist7570workticket-app at AWS Elastic Beanstalk - US East (Virginia)" incrementalDeployment="true" name="mist7570workticket-app at AWS Elastic Beanstalk - US East (Virginia)" regionId="us-east-1" runtime-id="Apache Tomcat v7.0 in AWS Elastic Beanstalk" server-type="com.amazonaws.eclipse.elasticbeanstalk.servers.tomcat7" server-type-id="com.amazonaws.eclipse.elasticbeanstalk.servers.tomcat7" start-timeout="600" stop-timeout="800" timestamp="64">
+  <list key="modules" value0="WorkTicket::org.eclipse.jst.jee.server:WorkTicket::jst.web::2.5"/>
+</server>

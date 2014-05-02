@@ -33,7 +33,7 @@ public class WorkTicketDAO {
 	public WorkTicketDAO() {
 		
 		try {
-			String jdbcUrl = "jdbc:mysql://locahost:3306/workTicket";
+			String jdbcUrl = "jdbc:mysql://localhost:3306/workticket"; //"jdbc:mysql://locahost:3306/workTicket";
 			String username = "awsuser";
 			String password = "wax&sh1ne";
 
