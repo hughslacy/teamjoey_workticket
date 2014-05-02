@@ -36,6 +36,9 @@ public class WorkTicketServlet extends HttpServlet {
 	    if (command == null){ //initial request or back from edit cart
 	    	
 	    	//request.setAttribute("catalog",catalog);
+	    	
+	    }
+	    else {
 	    	dispatcher = ctx.getRequestDispatcher("/notFound.jsp");//not found page
 	    }
 	    dispatcher.forward(request,response);
@@ -45,7 +48,10 @@ public class WorkTicketServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ServletContext ctx = this.getServletContext();
+		RequestDispatcher dispatcher = null;
+		
+		dispatcher.forward(request,response);
 	}
 
 }

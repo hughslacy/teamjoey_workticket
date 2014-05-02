@@ -25,6 +25,9 @@ public class WorkTicketDAO {
 	protected PreparedStatement selectTicketStatement;
 	protected PreparedStatement updateTicketStatement;
 	protected PreparedStatement insertTicketStatement;
+	protected PreparedStatement selectUserStatement;
+	protected PreparedStatement updateUserStatement;
+	protected PreparedStatement insertUserStatement;
 	protected PreparedStatement selectTicketAnnotationsStatement;
 	
 	/**
@@ -33,8 +36,15 @@ public class WorkTicketDAO {
 	public WorkTicketDAO() {
 		
 		try {
-			String jdbcUrl = "jdbc:mysql://localhost:3306/workticket"; //"jdbc:mysql://locahost:3306/workTicket";
-			String username = "awsuser";
+
+			// AMAZON RDS configuration
+			//String jdbcUrl = "jdbc:mysql://mist7510workticket.cxja2uv5sze4.us-east-1.rds.amazonaws.com:3306/workticket";
+			//String username = "awsuser";
+			//String password = "wax&sh1ne";
+			
+			// LOCALHOST configuration
+			String jdbcUrl = "jdbc:mysql://localhost:3306/workticket";
+			String username = "root";
 			String password = "wax&sh1ne";
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -49,6 +59,10 @@ public class WorkTicketDAO {
 			insertTicketStatement = conn.prepareStatement("INSERT INTO ticket (datePosted, title, description) VALUES(?, ?, ?)");
 			
 			selectTicketAnnotationsStatement = conn.prepareStatement("SELECT annotationId, ticketId, authorName, text FROM annotation WHERE ticketId = ?");
+			
+			selectUserStatement = conn.prepareStatement("SELECT username, passHash, email, name FROM user WHERE username = ?");
+			updateUserStatement = conn.prepareStatement("UPDATE user SET username = ?, passHash = ?, email = ?, name = ? WHERE username = ?");
+			insertUserStatement = conn.prepareStatement("INSERT INTO user (username, passHash, email, name) VALUES(?, ?, ?, ?)");
 			
 			// SQL to query the database.
 		} catch (Exception e) {
@@ -68,7 +82,6 @@ public class WorkTicketDAO {
 			selectAnnotationStatement.setInt(1, annotationId);
 			ResultSet rs = selectAnnotationStatement.executeQuery();
 			while (rs.next()) {
-
 				return new AnnotationDTO(
 						rs.getInt(1), // annotationId
 						rs.getInt(2), // ticketId
@@ -138,7 +151,6 @@ public class WorkTicketDAO {
 		return 0;
 	}
 
-	
 	/**
 	 * 
 	 * @param ticketId
@@ -194,5 +206,61 @@ public class WorkTicketDAO {
 		}
 		return 0;
 	}
+
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public UserDTO loadUser(String username) {
+		try{		
+			selectUserStatement.setString(1, username);
+			ResultSet rs = selectUserStatement.executeQuery();
+			while (rs.next()) {
+				return new UserDTO(
+						rs.getString(1), // userName
+						rs.getBytes(2), // passhash
+						rs.getString(3), // email
+						rs.getString(4)); // name
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("Exception retrieving user: " + e.getMessage());
+		}
+		return new UserDTO();
+	}
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public String saveUser(UserDTO user) {
+		try{
+			if (user.getUsername() == "") {
+				//
+				updateUserStatement.setString(1, user.getUsername());
+				updateUserStatement.setBytes(2, user.getPasshash());
+				updateUserStatement.setString(3, user.getEmail());
+				updateUserStatement.setString(4, user.getName());
+				updateUserStatement.executeUpdate();
+				return user.getUsername();
+			}
+			else {
+				//
+				insertUserStatement.setString(1, user.getUsername());
+				insertUserStatement.setBytes(2, user.getPasshash());
+				insertUserStatement.setString(3, user.getEmail());
+				insertUserStatement.setString(4, user.getName());
+				insertUserStatement.executeUpdate();
+				return user.getUsername();
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("Exception saving user: " + e.getMessage());
+		}
+		return "";
+	}
+
 	
 }

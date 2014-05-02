@@ -30,6 +30,9 @@ public class TicketDTO {
 	/**
 	 * 
 	 * @param ticketId
+	 * @param datePosted
+	 * @param title
+	 * @param description
 	 */
 	public TicketDTO(int ticketId, Date datePosted, String title, String description) {
 		// setup calendar
