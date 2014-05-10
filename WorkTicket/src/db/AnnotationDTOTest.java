@@ -31,49 +31,32 @@ public class AnnotationDTOTest {
 		assertEquals("Annotation's Text","Lord help us, we have a Macbook Air on fire",instance2.getText());
 	}
 
-	@Test
-	public void testAnnotationDTOIntIntStringString() {
-		
-	}
-
-	@Test
-	public void testGetAnnotationId() {
-		
-	}
-
-	@Test
+	/**Test that the set annotation ID method works */
 	public void testSetAnnotationId() {
-		
+		AnnotationDTO instance3 = new AnnotationDTO();
+		instance3.setAnnotationId(12);
+		assertEquals("Annotation ID",12,instance3.getAnnotationId());
 	}
 
-	@Test
-	public void testGetTicketId() {
-		
-	}
-
-	@Test
+	/**Test that the set Ticket ID method works */
 	public void testSetTicketId() {
-		
+		AnnotationDTO instance4 = new AnnotationDTO();
+		instance4.setTicketId(54);
+		assertEquals("Annotation's Ticket ID",54,instance4.getTicketId());
 	}
 
-	@Test
-	public void testGetAuthorName() {
-		
-	}
-
-	@Test
+	/**Test that the set Author method works */
 	public void testSetAuthorName() {
-		
+		AnnotationDTO instance5 = new AnnotationDTO();
+		instance5.setAuthorName("Paul Butter");
+		assertEquals("Annotation Author Name","Paul Butter",instance5.getAuthorName());
 	}
 
-	@Test
-	public void testGetText() {
-		
-	}
-
-	@Test
+	/**Test that the set text method works */
 	public void testSetText() {
-		
+		AnnotationDTO instance6 = new AnnotationDTO();
+		instance6.setText("Why won't the computer turn on?");
+		assertEquals("Annotation's Text","Why won't the computer turn on?",instance6.getText());
 	}
 
 }
